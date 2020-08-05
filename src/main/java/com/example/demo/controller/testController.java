@@ -33,7 +33,7 @@ public class testController {
 
     @GetMapping("/document/{ruta}")
     public String getDocument(@PathVariable("ruta") String ruta) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(ruta + "application.yml"));
+        BufferedReader br = new BufferedReader(new FileReader(ruta + "/application.yml"));
         String line;
         while ((line = br.readLine()) != null) {
             System.out.println(line);
