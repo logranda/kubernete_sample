@@ -34,6 +34,8 @@ spec:
           ports:
             - containerPort: 8080
           env:
+            - name: env.namespace
+              value: default
           volumeMounts:
           - name: minikube-sample 
             mountPath: "/usr/apps" 
@@ -45,4 +47,3 @@ spec:
           items:
           - key: application.yml 
             path: application.yml
-    
