@@ -1,0 +1,48 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: minikube-sample
+spec:
+  selector:
+    app: minikube-sample
+  ports:
+    - protocol: TCP
+      port: 8080
+      nodePort: 30083
+  type: NodePort
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minikube-sample
+  namespace: default
+spec:
+  selector:
+      matchLabels:
+        app: minikube-sample
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: minikube-sample
+    spec:
+      containers:
+        - name: minikube-sample
+          image: logranda/minikube-sample
+          ports:
+            - containerPort: 8080
+          env:
+          volumeMounts:
+          - name: minikube-sample 
+            mountPath: "/usr/apps" 
+            readOnly: true
+      volumes:
+      - name: minikube-sample
+        configMap:
+          name: minikube-sample 
+          items:
+          - key: application.yml 
+            path: application.yml
+    
