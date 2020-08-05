@@ -22,7 +22,7 @@ spec:
   selector:
       matchLabels:
         app: minikube-sample
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -38,7 +38,7 @@ spec:
               value: default
           volumeMounts:
           - name: minikube-sample 
-            mountPath: "/usr/apps" 
+            mountPath: /config
             readOnly: true
       volumes:
       - name: minikube-sample
