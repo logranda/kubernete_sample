@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/home")
 public class testController {
+
+    private static Logger log = LoggerFactory.getLogger(testController.class);
 
     @Autowired
     PropertiesConfig config;
@@ -44,10 +48,10 @@ public class testController {
 
     @GetMapping("/document")
     public String getDocument() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("/usr/apps/application.yml"));
+        BufferedReader br = new BufferedReader(new FileReader("/config/application.yml"));
         String line;
         while ((line = br.readLine()) != null) {
-            System.out.println(line);
+            log.info(line);
         }
         return br.toString();
     }
