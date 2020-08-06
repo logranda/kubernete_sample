@@ -4,14 +4,8 @@ metadata:
   name: minikube-sample
   namespace: default
 data:
-  test: "3"
-  app.test: Hello Youtube from app.properties
-  application.properties: |-
-    app.test=Hello Youtube from app.properties
-    test=Hi from app.properties
-  application.yml: |-
-    app.test=Hello Youtube from app.yml
-    test=Hi from app.properties
   application.yaml: |-
-    app.test=Hello Youtube from app.yaml
-    test=Hi from app.properties
+    app:
+      test: Hello Youtube from app.yml
+    test:
+      Hi: from app.properties

@@ -6,6 +6,7 @@ spring:
         sources:
           - namespace: default
             name: minikube-sample
+        paths: /config
       reload:
         enabled: true
         mode: event
