@@ -29,10 +29,19 @@ spec:
     spec:
       containers:
         - name: minikube-sample
-          image: logranda/minikube-sample:v18
+          image: logranda/minikube-sample
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
-          envFrom:
-            - configMapRef:
-                name: minikube-sample
+          volumeMounts:
+            - name: minikube-sample
+              mountPath: /config
+      volumes:
+        - name: minikube-sample
+          configMap:
+            # Provide the name of the ConfigMap containing the files you want
+            # to add to the container
+            name: minikube-sample
+            items:
+              - key: "application.yaml"
+                path: "application.yaml"
