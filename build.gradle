@@ -28,6 +28,7 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-kubernetes'
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-kubernetes-config'
 	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
