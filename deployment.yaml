@@ -17,12 +17,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minikube-sample
-  namespace: default
 spec:
   selector:
-      matchLabels:
-        app: minikube-sample
-  replicas: 3
+    matchLabels:
+      app: minikube-sample
+  replicas: 1
   template:
     metadata:
       labels:
@@ -30,20 +29,10 @@ spec:
     spec:
       containers:
         - name: minikube-sample
-          image: logranda/minikube-sample
+          image: logranda/minikube-sample:v18
+          imagePullPolicy: Never
           ports:
             - containerPort: 8080
-          env:
-            - name: env.namespace
-              value: default
-          volumeMounts:
-          - name: minikube-sample 
-            mountPath: /config
-            readOnly: true
-      volumes:
-      - name: minikube-sample
-        configMap:
-          name: minikube-sample 
-          items:
-          - key: application.yml 
-            path: application.yml
+          envFrom:
+            - configMapRef:
+                name: minikube-sample

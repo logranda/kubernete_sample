@@ -2,17 +2,11 @@ spring:
   cloud:
     kubernetes:
       config:
-        enabled: true
+        enabled: false
         sources:
           - namespace: default
             name: minikube-sample
-            paths: /usr/apps
       reload:
         enabled: true
         mode: event
-        strategy: refresh
-
-management:
-  endpoint:
-    restart:
-      enabled: true
+        strategy: polling
